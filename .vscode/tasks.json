@@ -1,0 +1,61 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1 - Compile Notepad",
+      "type": "shell",
+      "command": "javac",
+      "args": [
+        "--module-path",
+        "${config:javafx.lib}",
+        "--add-modules",
+        "javafx.controls",
+        "-d",
+        "${workspaceFolder}\\out",
+        "--source-path",
+        "${workspaceFolder}\\src",
+        "${workspaceFolder}\\src\\notepad\\NotepadApp.java"
+      ],
+      "options": {
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "2 - Run Notepad",
+      "type": "shell",
+      "command": "java",
+      "args": [
+        "--module-path",
+        "${config:javafx.lib}",
+        "--add-modules",
+        "javafx.controls",
+        "-cp",
+        "${workspaceFolder}\\out",
+        "notepad.NotepadApp"
+      ],
+      "dependsOn": "1 - Compile Notepad",
+      "options": {
+        "shell": {
+          "executable": "cmd.exe",
+          "args": ["/d", "/c"]
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}
